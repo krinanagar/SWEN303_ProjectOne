@@ -8,7 +8,7 @@ head
     title= title
 
 block body
-
+    +img-responsive ("images/logo.jpg", "Logo")
     .container
         +navbar("","dropdown_menu","inverse")
             +nav_item("index.html","active") Home
@@ -17,5 +17,8 @@ block body
             +nav_item("index.html") Contribute
             +nav_item("index.html") Contact
 
-
+    +carousel("Carousel ID",[
+        {image: "images/banner.jpg", p: ""},
+        {image: "images/banner2.jpg", p: ""}
+    ])
 
