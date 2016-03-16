@@ -1,5 +1,21 @@
-extends layout
+extends ../node_modules/jade-bootstrap/_bootstrap
 
-block content
-  h1= title
-  p Welcome to #{title}
+append styles
+    link(rel='stylesheet', href='/stylesheets/customStyle.css')
+
+
+head
+    title= title
+
+block body
+
+    .container
+        +navbar("","dropdown_menu","inverse")
+            +nav_item("index.html","active") Home
+            +nav_item("index.html") About
+            +nav_item("index.html") Search
+            +nav_item("index.html") Contribute
+            +nav_item("index.html") Contact
+
+
+
