@@ -1,0 +1,11 @@
+
+.navbar {
+    width: 80%;
+    left: 100px;
+}
+
+.navbar-nav > li{
+    margin-left: 70px;
+
+    font-size: 16px;
+}
