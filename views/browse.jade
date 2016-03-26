@@ -24,6 +24,12 @@ block body
                 input(type = 'submit' style = "display:none;")
             br
             br
+            if nResults > 0
+                +label-success(nResults + " results found")
+            else
+                +label-danger(nResults + " results found")
+            br
+            br
         p !{results}
         br
         br
