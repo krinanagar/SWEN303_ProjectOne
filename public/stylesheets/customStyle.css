@@ -1,21 +1,65 @@
+
+/* logo image style */
 .img-responsive{
     margin-left: auto;
     margin-right: auto;
     height: 150px;
     padding-bottom: 10px;
 }
+.container2{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* navbar style */
 .navbar {
     width: 80%;
-    left: 100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .navbar-nav > li{
-    margin-left: 70px;
-
     font-size: 16px;
 }
+
+/* carousel banner style */
 .carousel{
-    width: 71%;
-    left: 174px;
+    width: 72%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* homepage content style */
+.homeContent > p.title{
+    margin-left: 174px;
+    padding-top: 30px;
+    font-size: 23px;
+    color: #92A451;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homeContent > p{
+    margin-left: 174px;
+    width: 72%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* footer style */
+footer.footer{
+    background-color: #222222;
+    width: 72%;
+    margin-left: 174px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer.footer > p{
+    padding: 8px;
+
 }
 
