@@ -1,0 +1,31 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+    link(rel='stylesheet', href='/stylesheets/customStyle.css')
+head
+    title=title
+block body
+    +img-responsive ("images/logo.jpg", "Logo")
+    .container
+        +navbar("","dropdown_menu","inverse")
+            +nav_item("/") Home
+            +nav_item("/browse", "active") Browse
+            +nav_item("/search") Search
+            +nav_item("/contribute") Contribute
+    .container2
+        h1 Browse
+        p Explore the Colenso Collection below.
+        br
+        label Enter a title:
+        form(class="form-inline" action="/browse", method="get")
+            input(class="form-control" style="width:800px" type="text", name="searchString" placeholder="Search titles")
+            span &nbsp &nbsp
+            label(class="btn btn-success btn-file") Browse
+                input(type = 'submit' style = "display:none;")
+            br
+            br
+        p !{results}
+        br
+        br
+    footer.footer
+        p.text-muted  Copyright &copy Colenso Project 2016
