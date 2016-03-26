@@ -1,0 +1,40 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+    link(rel='stylesheet', href='/stylesheets/customStyle.css')
+head
+    title=title
+block body
+    +img-responsive ("images/logo.jpg", "Logo")
+    .container
+        +navbar("","dropdown_menu","inverse")
+            +nav_item("/") Home
+            +nav_item("/browse") Browse
+            +nav_item("/search") Search
+            +nav_item("/contribute", "active") Contribute
+    .container2
+        form(action = '/contribute', method = 'post' enctype = 'multipart/form-data')
+            h1 Contribute
+            p Submit letters to the Colenso collection below. Ensure the file you are uploading is an XML file.
+            br
+            label Select XML File:
+            .form-inline
+                .form-group
+                    label(class="btn btn-default btn-file")
+                        input(type = 'file' name = "xmlFile" style ="width: 780px")
+                span &nbsp &nbsp
+                .form-group
+                    label(class="btn btn-success btn-file") Upload
+                        input(type = 'submit' style = "display:none;")
+                br
+                br
+
+
+                br
+                p #{message}
+                br
+                br
+    footer.footer
+        p.text-muted  Copyright &copy Colenso Project 2016
+
+
