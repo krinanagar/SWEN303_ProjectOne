@@ -14,6 +14,16 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Colenso Project' });
 });
 
+/* Get Contibute page */
+router.get('/contribute', function(req, res) {
+    res.render('contribute', { title: 'Colenso Project' , message:""});
+});
+
+/*Get Search Page*/
+router.get('/search', function(req, res) {
+    res.render('search', { title: 'Colenso Project'});
+});
+
 /*Get Browse Page*/
 router.get('/browse', function(req, res) {
   var query = tei +
