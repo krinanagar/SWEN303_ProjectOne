@@ -12,15 +12,16 @@ block body
             +nav_item("/browse") Browse
             +nav_item("/search", "active") Search
             +nav_item("/contribute") Contribute
+            +nav_item("/XQuery") XQuery
     .container2
         h1 Search
         p Explore the Colenso Collection below.
         br
-        label Enter a XQuery:
-            form(class="form-inline" action="/browse", method="get")
-                input(class="form-control" style="width:810px" type="text", name="searchString" placeholder="Search titles")
+        label Enter a Query:
+            form(class="form-inline" action="/search", method="get")
+                input(class="form-control" style="width:800px" type="text", name="searchString" placeholder="Search titles")
                 span &nbsp &nbsp
-                label(class="btn btn-success btn-file") Search
+                label(class="btn btn-success") Search
                     input(type = 'submit' style = "display:none;")
                 br
                 br
@@ -30,7 +31,8 @@ block body
                     +label-danger(nResults + " results found")
                 br
                 br
-            p !{results}
+        each val in results
+            p: a(href = "/file?filename=/" + val) !{val}
             br
             br
     footer.footer

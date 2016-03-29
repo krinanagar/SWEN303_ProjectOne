@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var browse = require('./routes/index');
 var search = require('./routes/index');
 var contribute = require('./routes/index');
+var XQuery = require('./routes/index');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/users', users);
 app.use('/browse', browse);
 app.use('/search', search);
 app.use('/contribute', contribute);
+app.use('/XQuery', XQuery);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

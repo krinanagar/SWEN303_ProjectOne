@@ -12,6 +12,7 @@ block body
             +nav_item("/browse") Browse
             +nav_item("/search") Search
             +nav_item("/contribute", "active") Contribute
+            +nav_item("/XQuery") XQuery
     .container2
         form(action = '/contribute', method = 'post' enctype = 'multipart/form-data')
             h1 Contribute
@@ -27,9 +28,6 @@ block body
                     label(class="btn btn-success btn-file") Upload
                         input(type = 'submit' style = "display:none;")
                 br
-                br
-
-
                 br
                 p #{message}
                 br
