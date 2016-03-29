@@ -1,0 +1,42 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+    link(rel='stylesheet', href='/stylesheets/customStyle.css')
+head
+    title=title
+block body
+    +img-responsive ("images/logo.jpg", "Logo")
+    .container
+        +navbar("","dropdown_menu","inverse")
+            +nav_item("/") Home
+            +nav_item("/browse") Browse
+            +nav_item("/search") Search
+            +nav_item("/contribute") Contribute
+            +nav_item("/XQuery", "active") XQuery
+    .container2
+        h1 XQuery Search
+        p Explore the Colenso Collection below.
+        br
+        label Enter a XQuery:
+            form(class="form-inline" action="/XQuery", method="get")
+                input(class="form-control" style="width:800px" type="text", name="searchString" placeholder="Search titles")
+                span &nbsp &nbsp
+                label(class="btn btn-success") Search
+                    input(type = 'submit' style = "display:none;")
+                br
+                br
+                if nResults > 0
+                    +label-success(nResults + " results found")
+                else
+                    +label-danger(nResults + " results found")
+                br
+                br
+        each val in results
+            p: a(href = "/file?filename=/" + val) !{val}
+            br
+            br
+    footer.footer
+        p.text-muted  Copyright &copy Colenso Project 2016
+
+
+
