@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var multer = require('multer'); /*handles multiform data*/
 var fs = require('fs');
+var cheerio = require('cheerio');
 
 var basex = require('basex');
 var client = new basex.Session("127.0.0.1", 1984, "admin", "admin");
@@ -25,23 +26,32 @@ router.get('/search', function(req, res) {
 });
 
 /*Get Browse Page*/
-router.get('/browse', function(req, res) {
-  var query = tei +
-      "for $n in (//title [. contains text '" + req.query.searchString + "'])\n" +
-      "return concat('<a href=\"/file?filename= ../Colenso_TEIs/', db:path($n), '\" class=\"searchResult\">', $n, '</a>'," +
-      "'<p class=\"searchResult\">', db:path($n), '</p>')";
+router.get("/browse",function(req,res){
+    client.execute("XQUERY db:list('Colenso')",
+        function (error, result) {
+            if(error){ console.error(error);}
+            else {
+                var splitlist = result.result.split("\n")
+                res.render('browse', { title: 'Colenso Project', results: splitlist });
+            }
+        }
+    );
+});
 
-  client.execute(query,
-      function (error, result) {
-        if(error) {
-          console.error(error);
+
+/* GET xml file from database. */
+router.get('/file', function(req, res) {
+    var query = "XQUERY doc('Colenso/" + req.query.filename + "')";
+    client.execute(query,
+        function (error, result) {
+            if(error) {
+                console.error(error);
+            }
+            else {
+                res.render('file', { title: 'Colenso Project', data: result.result });
+            }
         }
-        else {
-          var nResults = (result.result.match(/<\/a>/g) || []).length;
-          res.render('browse', { title: 'Colenso Project', results: result.result, nResults: nResults});
-        }
-      }
-  );
+    );
 });
 
 module.exports = router;
