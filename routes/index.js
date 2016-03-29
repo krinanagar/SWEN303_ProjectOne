@@ -64,6 +64,8 @@ router.get('/search', function(req, res) {
                 if(req.query.searchString == undefined || req.query.searchString == null){
                     res.render('search', { title: 'Colenso Databse', results: " "});
                 }else{
+                    var nResults = (result.result.match(/<\/a>/g) || []).length;
+                    var splitlist = result.result.split("\n")
                     res.render('search', { title: 'Colenso Project', results: splitlist , nResults : nResults});
                 }
             }
