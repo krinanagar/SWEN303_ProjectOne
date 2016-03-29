@@ -1,0 +1,26 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+    link(rel='stylesheet', href='/stylesheets/customStyle.css')
+head
+    title=title
+block body
+    +img-responsive ("images/logo.jpg", "Logo")
+    .container
+        +navbar("","dropdown_menu","inverse")
+            +nav_item("/") Home
+            +nav_item("/browse") Browse
+            +nav_item("/search") Search
+            +nav_item("/contribute") Contribute
+            +nav_item("/XQuery") XQuery
+    .container2
+
+        form(method="post", action= "minime_beena/undefinedPrLBrghtn-0001 copy.xml").pull-right
+            input(type="hidden", name="docs", value=docs)
+            button(type="submit").btn.btn-success Download Results
+        br
+        br
+        p !{data}
+
+    footer.footer
+        p.text-muted  Copyright &copy Colenso Project 2016
