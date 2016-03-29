@@ -12,25 +12,11 @@ block body
             +nav_item("/browse", "active") Browse
             +nav_item("/search") Search
             +nav_item("/contribute") Contribute
+            +nav_item("/XQuery") XQuery
     .container2
         h1 Browse
-        p Explore the Colenso Collection below.
-        br
-        label Enter a title:
-        form(class="form-inline" action="/browse", method="get")
-            input(class="form-control" style="width:800px" type="text", name="searchString" placeholder="Search titles")
-            span &nbsp &nbsp
-            label(class="btn btn-success btn-file") Browse
-                input(type = 'submit' style = "display:none;")
-            br
-            br
-            if nResults > 0
-                +label-success(nResults + " results found")
-            else
-                +label-danger(nResults + " results found")
-            br
-            br
-        p !{results}
+        each val in results
+            p: a(href = "/file?filename=/" + val) !{val}
         br
         br
     footer.footer
