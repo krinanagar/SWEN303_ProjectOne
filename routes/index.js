@@ -45,4 +45,20 @@ router.get('/file', function(req, res) {
     );
 });
 
+/*Get XQuery Page*/
+router.get("/XQuery",function(req,res){
+    var tei = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';";
+    var query =  tei + "for $t in "  +req.query.searchString +
+        " return db:path($t)";
+    client.execute(query,
+        function (error, result) {
+            if(error){ console.error(error);}
+            else {
+                var splitlist = result.result.split("\n");
+                var nResults = (result.result.match(/<\/a>/g) || []).length;
+                res.render('XQuery', { title: 'Colenso Project', results: splitlist,nResults: nResults });
+            }
+        }
+    );
+});
 module.exports = router;
