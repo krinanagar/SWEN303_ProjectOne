@@ -19,7 +19,7 @@ block body
         br
         label Enter a XQuery:
             form(class="form-inline" action="/XQuery", method="get")
-                input(class="form-control" style="width:800px" type="text", name="searchString" placeholder="Search titles")
+                +input("text", "xquery", "Xquery Search", "", name="searchString")
                 span &nbsp &nbsp
                 label(class="btn btn-success") Search
                     input(type = 'submit' style = "display:none;")
@@ -33,8 +33,7 @@ block body
                 br
         each val in results
             p: a(href = "/file?filename=/" + val) !{val}
-            br
-            br
+
     footer.footer
         p.text-muted  Copyright &copy Colenso Project 2016
 
