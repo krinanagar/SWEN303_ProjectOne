@@ -17,16 +17,13 @@ block body
         form(action = '/contribute', method = 'post' enctype = 'multipart/form-data')
             h1 Contribute
             p Submit letters to the Colenso collection below. Ensure the file you are uploading is an XML file.
-            br
+            hr
             label Select XML File:
-            .form-inline
-                .form-group
-                    label(class="btn btn-default btn-file")
-                        input(type = 'file' name = "xmlFile" style ="width: 780px")
-                span &nbsp &nbsp
-                .form-group
-                    label(class="btn btn-success btn-file") Upload
-                        input(type = 'submit' style = "display:none;")
+            form(action='/contribute', method='post', enctype="multipart/form-data")
+                input(type="file", name="file")
+                br
+                label(class="btn btn-success btn-file") Upload
+                    input(type = 'submit' style = "display:none;")
                 br
                 br
                 p #{message}

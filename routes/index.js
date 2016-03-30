@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer'); /*handles multiform data*/
+var upload = multer({ dest: 'Colenso_TEIs/' });
 var fs = require('fs');
 var cheerio = require('cheerio');
 
@@ -14,11 +15,6 @@ var fileName = "";
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Colenso Project' });
-});
-
-/* Get Contibute page */
-router.get('/contribute', function(req, res) {
-    res.render('contribute', { title: 'Colenso Project' , message:""});
 });
 
 /*Get Browse Page*/
@@ -148,6 +144,30 @@ router.get("/xml",function(req,res){
                 res.render('xml', {name: name, data: result.result });
             }
         });
+});
+
+
+router.get('/contribute', function(req, res) {
+    res.render('contribute', { title: 'Colenso Project'});
+});
+
+router.post('/contribute', upload.single('file'), function(req,res,next){
+
+    var path = req.file.path;
+    console.log(path);
+    var name = req.file.originalname;
+    fs.readFile(path, "utf-8", function(error, data) {
+        client.execute('ADD TO ' + name + ' "' + data + '"',
+            function (error, result) {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log("SUCCESS");
+                }
+
+            });
+    })
+
 });
 
 module.exports = router;
