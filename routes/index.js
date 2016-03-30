@@ -5,10 +5,12 @@ var fs = require('fs');
 var cheerio = require('cheerio');
 
 var basex = require('basex');
+var history = require('history');
 var client = new basex.Session("127.0.0.1", 1984, "admin", "admin");
 client.execute("OPEN Colenso");
 
 var tei = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0'; ";
+var fileName = "";
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -83,6 +85,7 @@ router.get('/file', function(req, res) {
                 console.error(error);
             }
             else {
+                fileName = req.query.filename;
                 var name = result.result.match(/<title>[\s\S]*?<\/title>/)[0];
                 name = name.replace("<title>", "");
                 name = name.replace("</title>", "");
@@ -107,6 +110,26 @@ router.get("/XQuery",function(req,res){
             }
         }
     );
+});
+
+/*Download File*/
+router.get('/download', function(req, res) {
+    client.execute("XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0';" +
+        "(doc('Colenso/"+fileName+"'))[1]",
+        function (error, result) {
+            if(error){
+                console.error(error);
+            }
+            else {
+                res.writeHead(200, {
+                    'Content-Type': 'application/force-download','Content-disposition': 'attachment; filename=' + fileName,
+                });
+
+                res.write(result.result);
+                res.end();
+
+            }
+        });
 });
 
 module.exports = router;
