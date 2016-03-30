@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer'); /*handles multiform data*/
-var upload = multer({ dest: 'Colenso_TEIs/' });
+var upload = multer({ dest: 'uploads/' });
 var fs = require('fs');
 var cheerio = require('cheerio');
 
@@ -162,6 +162,7 @@ router.post('/contribute', upload.single('file'), function(req,res,next){
                 if (error) {
                     console.error(error);
                 } else {
+                    res.redirect("/contribute")
                     console.log("SUCCESS");
                 }
 
