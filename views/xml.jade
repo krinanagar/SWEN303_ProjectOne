@@ -18,12 +18,12 @@ block body
         h1 Raw XML
         label #{name}
         br
-        form(action= '/')
+        form(id='submitchanges', name = 'submitchanges', action='/submitchanges')
+            br
+            textarea(name="theTextarea", style = "width: 100%; height: 400px;")
+                p #{data}
             input(type="hidden", name="docs", value=docs)
             button(type="submit").btn.btn-success Save Changes
-        br
-        textarea(id="theTextarea", style = "width: 100%; height: 400px;")
-         p #{data}
         br
         br
     footer.footer
