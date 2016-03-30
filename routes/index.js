@@ -61,7 +61,7 @@ router.get('/search', function(req, res) {
                 queryType += searchStrArray[2];
             }
     }
-    var query = tei + "for $t in (collection('Colenso')[. contains text ' "  + queryType +"'])\n" +
+    var query = tei + "for $t in (collection('Colenso')[. contains text ' "  + queryType +"' using wildcards])\n" +
         " return ('<p class=\"searchResult\">', db:path($t), '</p>')";
     client.execute(query,
         function (error, result) {
@@ -70,9 +70,8 @@ router.get('/search', function(req, res) {
                 if(req.query.searchString == undefined || req.query.searchString == null){
                     res.render('search', { title: 'Colenso Databse', results: " "});
                 }else{
-                    var nResults = (result.result.match(/<\/a>/g) || []).length;
                     var splitlist = result.result.split("\n")
-                    res.render('search', { title: 'Colenso Project', results: splitlist , nResults : nResults});
+                    res.render('search', { title: 'Colenso Project', results: splitlist});
                 }
             }
         }
@@ -109,8 +108,7 @@ router.get("/XQuery",function(req,res){
             if(error){ console.error(error);}
             else {
                 var splitlist = result.result.split("\n");
-                var nResults = (result.result.match(/<\/a>/g) || []).length;
-                res.render('XQuery', { title: 'Colenso Project', results: splitlist,nResults: nResults });
+                res.render('XQuery', { title: 'Colenso Project', results: splitlist});
             }
         }
     );
@@ -132,6 +130,22 @@ router.get('/download', function(req, res) {
                 res.write(result.result);
                 res.end();
 
+            }
+        });
+});
+
+/*Get Raw XML*/
+router.get("/xml",function(req,res){
+    client.execute(tei + "(doc('Colenso/"+fileName+"'))[1]",
+        function (error, result) {
+            if(error){
+                console.error(error);
+            }
+            else {
+                var name = result.result.match(/<title>[\s\S]*?<\/title>/)[0];
+                name = name.replace("<title>", "");
+                name = name.replace("</title>", "");
+                res.render('xml', {name: name, data: result.result });
             }
         });
 });
