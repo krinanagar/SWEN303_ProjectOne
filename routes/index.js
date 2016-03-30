@@ -5,7 +5,6 @@ var fs = require('fs');
 var cheerio = require('cheerio');
 
 var basex = require('basex');
-var history = require('history');
 var client = new basex.Session("127.0.0.1", 1984, "admin", "admin");
 client.execute("OPEN Colenso");
 
@@ -53,6 +52,11 @@ router.get('/search', function(req, res) {
                     queryType += "' ftand ftnot '";
                 }else if(searchStrArray[0] === "NOT"){
                     queryType += "'ftand ftnot '";
+                }else if(searchStrArray[0] === "NOT"){
+                    queryType += "'ftand ftnot '";
+                }else{
+                    queryType += " ";
+                    queryType += array[1];
                 }
                 queryType += searchStrArray[2];
             }
