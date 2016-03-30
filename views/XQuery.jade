@@ -15,20 +15,14 @@ block body
             +nav_item("/XQuery", "active") XQuery
     .container2
         h1 XQuery Search
-        p Explore the Colenso Collection below.
-        br
+        p Explore the Colenso Collection below with an XQuery search.
+        hr
         label Enter a XQuery:
             form(class="form-inline" action="/XQuery", method="get")
-                +input("text", "xquery", "Xquery Search", "", name="searchString")
+                +input("text", "xquery", "E.g. //name", "", name="searchString")
                 span &nbsp &nbsp
                 label(class="btn btn-success") Search
                     input(type = 'submit' style = "display:none;")
-                br
-                br
-                if nResults > 0
-                    +label-success(nResults + " results found")
-                else
-                    +label-danger(nResults + " results found")
                 br
                 br
         each val in results

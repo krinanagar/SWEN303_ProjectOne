@@ -15,9 +15,12 @@ block body
             +nav_item("/XQuery") XQuery
     .container2
         h1 Browse
+        p Explore the Colenso Collection below.
+        hr
         each val in results
             p: a(href = "/file?filename=/" + val) !{val}
         br
         br
+        <p><a class="scroll" data-speed="2000" href="#top">Back to the top</a></p>
     footer.footer
         p.text-muted  Copyright &copy Colenso Project 2016

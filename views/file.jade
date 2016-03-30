@@ -14,14 +14,16 @@ block body
             +nav_item("/contribute") Contribute
             +nav_item("/XQuery") XQuery
     .container2
-
+        p: a(href = "javascript:history.back()") < Back to previous page
         form(action= '/download').pull-right
             input(type="hidden", name="docs", value=docs)
             button(type="submit").btn.btn-success Download File
-        br
-        br
+        form(action= '/xml')
+              input(type="hidden", name="docs", value=docs)
+              button(type="submit").btn.btn-success View Raw XML
         h3 #{name}
         p !{data}
-
+        br
+        br
     footer.footer
         p.text-muted  Copyright &copy Colenso Project 2016
