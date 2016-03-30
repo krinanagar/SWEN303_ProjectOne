@@ -1,0 +1,32 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+    link(rel='stylesheet', href='/stylesheets/customStyle.css')
+head
+    title=title
+block body
+    +img-responsive ("images/logo.jpg", "Logo")
+    .container
+        +navbar("","dropdown_menu","inverse")
+            +nav_item("/") Home
+            +nav_item("/browse") Browse
+            +nav_item("/search") Search
+            +nav_item("/contribute") Contribute
+            +nav_item("/XQuery") XQuery
+    .container2
+        p: a(href = "javascript:history.back()") < Back to previous page
+        h1 Raw XML
+        label #{name}
+        br
+        form(action= '/')
+            input(type="hidden", name="docs", value=docs)
+            button(type="submit").btn.btn-success Save Changes
+        br
+        textarea(id="theTextarea", style = "width: 100%; height: 400px;")
+         p #{data}
+        br
+        br
+    footer.footer
+        p.text-muted  Copyright &copy Colenso Project 2016
+
+
